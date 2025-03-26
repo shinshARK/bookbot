@@ -1,4 +1,5 @@
 from stats import *
+import sys
 
 def get_book_text(file_path):
     with open(file_path) as file:
@@ -6,9 +7,13 @@ def get_book_text(file_path):
         return file_contents
 
 def main():
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
     print("============ BOOKBOT ============")
     
-    book_uri = "books/frankenstein.txt"
+    book_uri = sys.argv[1]
     print(f"Analyzing book found at {book_uri}...")
 
     book_content = get_book_text(book_uri)
