@@ -6,11 +6,25 @@ def get_book_text(file_path):
         return file_contents
 
 def main():
-    book_content = get_book_text("books/frankenstein.txt")
+    print("============ BOOKBOT ============")
+    
+    book_uri = "books/frankenstein.txt"
+    print(f"Analyzing book found at {book_uri}...")
+
+    book_content = get_book_text(book_uri)
+    
     word_count = count_words(book_content)
-    print(f"{word_count} words found in the document")
+    print("----------- Word Count ----------")
+    print(f"Found {word_count} total words")
+    
+    print("--------- Character Count -------")
     char_count = count_character_frequency(book_content)
-    print(char_count)
+    transformed_char_count = sort_dict(char_count)
+    for entry in transformed_char_count:
+        if entry['char'].isalpha():
+            print(f"{entry["char"]}: {entry["count"]}")
+
+    print("============= END ===============")
 
 
 main()
